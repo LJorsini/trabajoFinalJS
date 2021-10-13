@@ -1,3 +1,4 @@
+/*Clases y finciones--------------------------------------------------------------------------------------------------------------------------------------------- */
 class Paracaidista {
     constructor (nombre, apellido, licenciaN, vencimientoPsicofisico, cantidadSaltos) {
         this.nombre = nombre;
@@ -24,23 +25,20 @@ function cuotas (saltos, financiado) {
     alert(" Forma de pago " + financiado + " Cuotas de $ " + totalCuotas);
     
 }
-
-
+/*Constructores---------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 let paracaidista1 = new Paracaidista ("Lucas", "Orsini", "AR12345", "30/09/2022", 202);
 let paracaidista2 = new Paracaidista ("Jose", "Perez", "AR78541", "01/06/2021", 50);
 let paracaidista3 = new Paracaidista ("Jose", "Rodriguez", "AR74589", "01/10/2020", 178);
 let paracaidista4 = new Paracaidista ("Juan", "Peres", "AR74521", "05/05/2022", 25);
 
-
+/*Entradas del usuario--------------------------------------------------------------------------------------------------------------------------------------------------------- */
 let select = parseInt(prompt("Selecciones el nombre del paracaidista\n1-Lucas Orsini\n2-Jose Perez\n3-Jose Rodriguez\n4-Juan Perez"));
 let cantidadSaltos = parseInt(prompt("Ingrese la cantidad de tickets que va a comprar"));
 let financiado = parseInt(prompt("Ingrese la cantidad de cuotas"));
 
-paqueteSaltos(cantidadSaltos);
-cuotas (cantidadSaltos, financiado);
 
 
-
+/*Arrays------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 let arrayParacaidistas = [];
 
 arrayParacaidistas.push(paracaidista1);
@@ -53,6 +51,7 @@ arrayParacaidistas.push(paracaidista4);
 console.log(arrayParacaidistas);
 const paracaMenosSaltos = arrayParacaidistas.filter (Paracaidista => Paracaidista.cantidadSaltos <= 50);
 
+/*Salidas por alert-------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 if (select == 1) {
     alert("Nombre: " + paracaidista1.nombre + "\nApellido: " + paracaidista1.apellido + "\nLicencia Nº: " + paracaidista1.licenciaN + "\nVencimiento psicofisico: " + paracaidista1.vencimientoPsicofisico + "\nCantidad de saltos: " + paracaidista1.cantidadSaltos);
 } else if (select == 2) {
@@ -68,5 +67,9 @@ if (select == 1) {
 
 console.log(paracaMenosSaltos); 
 
+
+/*Llamada a funciones--------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+paqueteSaltos(cantidadSaltos);
+cuotas (cantidadSaltos, financiado);
 
 
