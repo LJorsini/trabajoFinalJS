@@ -10,6 +10,21 @@ class Paracaidista {
     
 }
 
+function paqueteSaltos (cant) {
+    let precio = 3000;
+    let total = cant*precio;
+    let totalIva = total*1.21;
+    alert ("Usted compro " + cant + " saltos " + " por un total de " + totalIva + " pesos ");
+}
+
+function cuotas (saltos, financiado) {
+    let precioSalto = 3000;
+    let total = saltos*precioSalto;
+    let totalCuotas = total/financiado;
+    alert(" Forma de pago " + financiado + " Cuotas de $ " + totalCuotas);
+    
+}
+
 
 let paracaidista1 = new Paracaidista ("Lucas", "Orsini", "AR12345", "30/09/2022", 202);
 let paracaidista2 = new Paracaidista ("Jose", "Perez", "AR78541", "01/06/2021", 50);
@@ -18,6 +33,14 @@ let paracaidista4 = new Paracaidista ("Juan", "Peres", "AR74521", "05/05/2022", 
 
 
 let select = parseInt(prompt("Selecciones el nombre del paracaidista\n1-Lucas Orsini\n2-Jose Perez\n3-Jose Rodriguez\n4-Juan Perez"));
+let cantidadSaltos = parseInt(prompt("Ingrese la cantidad de tickets que va a comprar"));
+let financiado = parseInt(prompt("Ingrese la cantidad de cuotas"));
+
+paqueteSaltos(cantidadSaltos);
+cuotas (cantidadSaltos, financiado);
+
+
+
 let arrayParacaidistas = [];
 
 arrayParacaidistas.push(paracaidista1);
@@ -25,8 +48,7 @@ arrayParacaidistas.push(paracaidista2);
 arrayParacaidistas.push(paracaidista3);
 arrayParacaidistas.push(paracaidista4);
 
-const fecha = new Date ();
-console.log(Date);
+
 
 console.log(arrayParacaidistas);
 const paracaMenosSaltos = arrayParacaidistas.filter (Paracaidista => Paracaidista.cantidadSaltos <= 50);
