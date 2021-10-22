@@ -1,5 +1,5 @@
 /*Clases y finciones--------------------------------------------------------------------------------------------------------------------------------------------- */
-class Paracaidista {
+/* class Paracaidista {
     constructor (nombre, apellido, licenciaN, vencimientoPsicofisico, cantidadSaltos) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -7,69 +7,51 @@ class Paracaidista {
         this.vencimientoPsicofisico = vencimientoPsicofisico;
         this.cantidadSaltos = parseInt(cantidadSaltos);
     }
+} */
 
-    
-}
-
-function paqueteSaltos (cant) {
-    let precio = 3000;
-    let total = cant*precio;
-    let totalIva = total*1.21;
-    alert ("Usted compro " + cant + " saltos " + " por un total de " + totalIva + " pesos ");
-}
-
-function cuotas (saltos, financiado) {
-    let precioSalto = 3000;
-    let total = saltos*precioSalto;
-    let totalCuotas = total/financiado;
-    alert(" Forma de pago " + financiado + " Cuotas de $ " + totalCuotas);
-    
-}
 /*Constructores---------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-let paracaidista1 = new Paracaidista ("Lucas", "Orsini", "AR12345", "30/09/2022", 202);
+/* let paracaidista1 = new Paracaidista ("Lucas", "Orsini", "AR12345", "30/09/2022", 202);
 let paracaidista2 = new Paracaidista ("Jose", "Perez", "AR78541", "01/06/2021", 50);
 let paracaidista3 = new Paracaidista ("Jose", "Rodriguez", "AR74589", "01/10/2020", 178);
-let paracaidista4 = new Paracaidista ("Juan", "Peres", "AR74521", "05/05/2022", 25);
-
-/*Entradas del usuario--------------------------------------------------------------------------------------------------------------------------------------------------------- */
-let select = parseInt(prompt("Selecciones el nombre del paracaidista\n1-Lucas Orsini\n2-Jose Perez\n3-Jose Rodriguez\n4-Juan Perez"));
-let cantidadSaltos = parseInt(prompt("Ingrese la cantidad de tickets que va a comprar"));
-let financiado = parseInt(prompt("Ingrese la cantidad de cuotas"));
-
-
+let paracaidista4 = new Paracaidista ("Juan", "Peres", "AR74521", "05/05/2022", 25); */
 
 /*Arrays------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-let arrayParacaidistas = [];
-
+/* let arrayParacaidistas = [];
 arrayParacaidistas.push(paracaidista1);
 arrayParacaidistas.push(paracaidista2);
 arrayParacaidistas.push(paracaidista3);
 arrayParacaidistas.push(paracaidista4);
+ */
+
+function enviar() {
+    let nombre = document.getElementById("name");
+    let apellido = document.getElementById("surname");
+    let telefono = document.getElementById("tel");
+    let email = document.getElementById("email");
+    let licencia = document.getElementById("licencia");
+    let cantidadSaltos = document.getElementById("tickets");
+    let cantidadCuotas = document.getElementById("cuotas");
+
+    let precio = 3000;
+    let total = cantidadSaltos.value * precio;
+    let financiado = total / cantidadCuotas.value;
+
+    let formulario = document.getElementById("confirmacionForm");
+    let confirmacion = document.createElement("div");
+
+    confirmacion.innerHTML = `<p>Nombre: ${nombre.value}</p>
+                               <p>Apellido: ${apellido.value}</p>
+                               <p>Telefono: ${telefono.value}</p>
+                               <p>Email: ${email.value}</p>
+                               <p>Licencia: ${licencia.value}</p>
+                               <p>Cantidad Tickets: ${cantidadSaltos.value}</p>
+                               <p>Cantidad de Cuotas: ${cantidadCuotas.value}</p>
+                               <p>Total a pagar: $ ${total}</p>
+                               <p>Financiacion ${cantidadCuotas.value} cuotas de $ ${financiado}</p>
+                                `;
 
 
 
-console.log(arrayParacaidistas);
-const paracaMenosSaltos = arrayParacaidistas.filter (Paracaidista => Paracaidista.cantidadSaltos <= 50);
 
-/*Salidas por alert-------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-if (select == 1) {
-    alert("Nombre: " + paracaidista1.nombre + "\nApellido: " + paracaidista1.apellido + "\nLicencia Nº: " + paracaidista1.licenciaN + "\nVencimiento psicofisico: " + paracaidista1.vencimientoPsicofisico + "\nCantidad de saltos: " + paracaidista1.cantidadSaltos);
-} else if (select == 2) {
-    alert("Nombre: " + paracaidista2.nombre + "\nApellido: " + paracaidista2.apellido + "\nLicencia Nº: " + paracaidista2.licenciaN + "\nVencimiento psicofisico: " + paracaidista2.vencimientoPsicofisico + "\nCantidad de saltos: " + paracaidista2.cantidadSaltos);
-} else if (select == 3) {
-    alert("Nombre: " + paracaidista3.nombre + "\nApellido: " + paracaidista3.apellido + "\nLicencia Nº: " + paracaidista3.licenciaN + "\nVencimiento psicofisico: " + paracaidista3.vencimientoPsicofisico + "\nCantidad de saltos: " + paracaidista3.cantidadSaltos);
-} else if (select == 4) {
-    alert("Nombre: " + paracaidista4.nombre + "\nApellido: " + paracaidista4.apellido + "\nLicencia Nº: " + paracaidista4.licenciaN + "\nVencimiento psicofisico: " + paracaidista4.vencimientoPsicofisico + "\nCantidad de saltos: " + paracaidista4.cantidadSaltos);
-} else {
-    console.log("La persona no existe");
-} 
-
-
-console.log(paracaMenosSaltos); 
-
-
-/*Llamada a funciones--------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-paqueteSaltos(cantidadSaltos);
-cuotas (cantidadSaltos, financiado);
-
-
+    formulario.appendChild(confirmacion);
+}

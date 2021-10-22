@@ -6,3 +6,16 @@
 .formularioContacto {
     display: flex;
 }
+
+.formulario1 {
+    background-color: aqua;
+}
+
+.formulario1, .tituloForm, .total {
+    width: 600px;
+    
+}
+
+.tituloForm {
+    text-align: center;
+}
