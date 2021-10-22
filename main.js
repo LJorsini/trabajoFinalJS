@@ -33,8 +33,8 @@ function enviar() {
     let cantidadCuotas = document.getElementById("cuotas");
 
     let precio = 3000;
-    let total = cantidadSaltos.value * precio;
-    let financiado = total / cantidadCuotas.value;
+    let total = parseFloat(cantidadSaltos.value * precio);
+    let financiado = parseFloat(total / cantidadCuotas.value);
 
     let formulario = document.getElementById("confirmacionForm");
     let confirmacion = document.createElement("div");
