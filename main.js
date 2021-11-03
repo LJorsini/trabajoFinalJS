@@ -10,19 +10,19 @@ class Paracaidista {
 }
 
 /*Constructores---------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-let paracaidista1 = new Paracaidista ("Lucas", "Orsini", "AR12345", "30/09/2022", 202);
-let paracaidista2 = new Paracaidista ("Jose", "Perez", "AR78541", "01/06/2021", 50);
-let paracaidista3 = new Paracaidista ("Jose", "Rodriguez", "AR74589", "01/10/2020", 178);
-let paracaidista4 = new Paracaidista ("Juan", "Peres", "AR74521", "05/05/2022", 25); 
+let paracaidista1 = new Paracaidista ("Lucas", "Orsini", "AR12345", "2023-09-30", 202);
+let paracaidista2 = new Paracaidista ("Jose", "Perez", "AR78541", "2020-06-01T00:00:00", 50);
+let paracaidista3 = new Paracaidista ("Jose", "Rodriguez", "AR74589", "2025-10-01T00:00:00", 178);
+let paracaidista4 = new Paracaidista ("Juan", "Peres", "AR74521", "2020-05-05T00:00:00", 25); 
 
 /*Arrays------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-let arrayParacaidistas = [];
+let arrayParacaidistas = []; 
 arrayParacaidistas.push(paracaidista1);
 arrayParacaidistas.push(paracaidista2);
 arrayParacaidistas.push(paracaidista3);
-arrayParacaidistas.push(paracaidista4);
+arrayParacaidistas.push(paracaidista4); 
  
-
+/*Funcion que muestra la operacion de compra de tickets */
 function enviar(e) {
     e.preventDefault();
     let nombre = document.getElementById("name");
@@ -54,18 +54,40 @@ function enviar(e) {
         formulario.appendChild(confirmacion);
 }
 
+/*Funcion que muestra todos los paracaidistas que estan anotados y si tienen el psicofisico vencido */
 function mostrarParaca (e) {
     e.preventDefault();
+    
     for (const paracas of arrayParacaidistas) {
         let nombre = paracas.nombre;
         let apellido = paracas.apellido;
         let licenciaN = paracas.licenciaN;
         let vencimientoPsico = paracas.vencimientoPsicofisico;
         let cantidadSaltos = paracas.cantidadSaltos;
+        
+        let fecha = new Date();
+        let objetoFecha = new Date(vencimientoPsico);
+        console.log(fecha);
+        console.log(objetoFecha);
+        
+        if (objetoFecha.getTime() > fecha.getTime()) { 
+            let mostrar = document.getElementById("mostrar");
+            let mostrarTodo = document.createElement("div");
 
+            mostrarTodo.innerHTML = `<div class="card" style="width: 18rem;">
+                                    <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
+                                    <div class="card-body">
+                                    <p class="card-text">Nombre: ${nombre}</p>
+                                    <p>Apellido: ${apellido}
+                                    <p>Licencia Nº: ${licenciaN}  
+                                    <p>Vencimiento Psicofisico: Vigente                         
+                                    <p>Cantidad de saltos: ${cantidadSaltos}
+                                </div>
+                               `
 
-
-        let mostrar = document.getElementById("mostrar");
+            mostrar.appendChild(mostrarTodo);
+        } else {
+            let mostrar = document.getElementById("mostrar");
         let mostrarTodo = document.createElement("div");
 
         mostrarTodo.innerHTML = `<div class="card" style="width: 18rem;">
@@ -74,22 +96,50 @@ function mostrarParaca (e) {
                                     <p class="card-text">Nombre: ${nombre}</p>
                                     <p>Apellido: ${apellido}
                                     <p>Licencia Nº: ${licenciaN}  
-                                    <p>Vencimiento Psicofisico: ${vencimientoPsico}                         
+                                    <p>Vencimiento Psicofisico: Vencido                         
                                     <p>Cantidad de saltos: ${cantidadSaltos}
                                 </div>
-                               
-        
-        `
+                               `
 
         mostrar.appendChild(mostrarTodo);
-
+        }
     }
-
-
 }
 
+/*Funcion para poner Paracaidista en local storage */
+function nuevoParaca (e) {
+    e.preventDefault();
+    let nombreNuevo = document.getElementById("nameNew");
+    let apellidoNuevo = document.getElementById("surnameNew");
+    let telefonoNuevo = document.getElementById("telNew");
+    let emailNuevo = document.getElementById("emailNew");
+    let licenciaNueva = document.getElementById("licenciaNew");
+    let psicofisico = document.getElementById("psicofisico");
+    let pscicoJson = JSON.stringify(psicofisico.value);
+    let totalSaltos = document.getElementById("cantidadSaltos");
+
+    localStorage.setItem("Nombre", nombreNuevo.value);
+    localStorage.setItem("Apellido", apellidoNuevo.value);
+    localStorage.setItem("Telefono", telefonoNuevo.value);
+    localStorage.setItem("Email", emailNuevo.value);
+    localStorage.setItem("Licencia Nº", licenciaNueva.value);
+    
+    localStorage.setItem("Vencimiento Psicofisico", pscicoJson);
+    
+    localStorage.setItem("Cantidad de saltos", totalSaltos.value);
+
+    
+
+    document.getElementById("formulario1").reset();
+}
+
+/*Manejadores de eventos */
 let confirFormulario = document.getElementById("enviar");
 confirFormulario.addEventListener("click", enviar);
 
-letconfirmarNostrar = document.getElementById("enviar1");
-letconfirmarNostrar.addEventListener("click", mostrarParaca);
+let confirmarMostrar = document.getElementById("enviar1");
+confirmarMostrar.addEventListener("click", mostrarParaca);
+
+let confirmarNuevo = document.getElementById("botonNew");
+confirmarNuevo.addEventListener("click", nuevoParaca);
+
