@@ -12,6 +12,12 @@
     <!--Css-->
     <link rel="stylesheet" href="style.css">
 
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+    
     <title>Document</title>
 </head>
 
@@ -44,8 +50,8 @@
             <label for="inputPassword5" class="form-label mt-3">Cantidad de Cuotas</label>
             <input type="number" id="cuotas" class="form-control" aria-describedby="passwordHelpBlock">
 
-            <button id="enviar" type="button" class="btn btn-primary btn-lg mt-4 mb-4">Confirmar</button>
-            <button id="enviar1" type="mostrar" class="btn btn-primary btn-lg mt-4 mb-4">Mostrar Inscriptos</button>
+            <button id="enviar" type="submit" class="btn btn-primary btn-lg mt-4 mb-4">Confirmar</button>
+            <button id="enviar1" type="submit" class="btn btn-primary btn-lg mt-4 mb-4">Mostrar Inscriptos</button>
         </form>
     </div>
 
@@ -87,11 +93,14 @@
 
             
 
-            <button id="botonNew" type="button" class="btn btn-primary btn-lg mt-4 mb-4">Confirmar</button>
+            <button id="botonNew" type="submit" class="btn btn-primary btn-lg mt-4 mb-4">Confirmar</button>
             
         </form>
+
+        
     </div>
 
+    </div>
     <!--Script Boostrap-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">

@@ -54,8 +54,9 @@ function enviar(e) {
         formulario.appendChild(confirmacion);
 }
 
+
 /*Funcion que muestra todos los paracaidistas que estan anotados y si tienen el psicofisico vencido */
-function mostrarParaca (e) {
+/* function mostrarParaca (e) {
     e.preventDefault();
     
     for (const paracas of arrayParacaidistas) {
@@ -104,7 +105,7 @@ function mostrarParaca (e) {
         mostrar.appendChild(mostrarTodo);
         }
     }
-}
+} */
 
 /*Funcion para poner Paracaidista en local storage */
 function nuevoParaca (e) {
@@ -137,9 +138,56 @@ function nuevoParaca (e) {
 let confirFormulario = document.getElementById("enviar");
 confirFormulario.addEventListener("click", enviar);
 
-let confirmarMostrar = document.getElementById("enviar1");
-confirmarMostrar.addEventListener("click", mostrarParaca);
+/* let confirmarMostrar = document.getElementById("enviar1");
+confirmarMostrar.addEventListener("click", mostrarParaca); */
 
 let confirmarNuevo = document.getElementById("botonNew");
 confirmarNuevo.addEventListener("click", nuevoParaca);
 
+
+
+
+/*Desafio Entregable JQuery */
+$("#enviar1").click(function(e) {
+    e.preventDefault();
+    
+    for (const paracas of arrayParacaidistas) {
+        let nombre = paracas.nombre;
+        let apellido = paracas.apellido;
+        let licenciaN = paracas.licenciaN;
+        let vencimientoPsico = paracas.vencimientoPsicofisico;
+        let cantidadSaltos = paracas.cantidadSaltos;
+        
+        let fecha = new Date();
+        let objetoFecha = new Date(vencimientoPsico);
+        console.log(fecha);
+        console.log(objetoFecha);
+        
+        if (objetoFecha.getTime() > fecha.getTime()) { 
+            
+            $("#mostrar").append(`<div class="card" style="width: 18rem;">
+            <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
+            <div class="card-body">
+            <p class="card-text">Nombre: ${nombre}</p>
+            <p>Apellido: ${apellido}
+            <p>Licencia Nº: ${licenciaN}  
+            <p>Vencimiento Psicofisico: Vigente                         
+            <p>Cantidad de saltos: ${cantidadSaltos}
+        </div>
+       `)
+        } else {
+            $("#mostrar").append(`<div class="card" style="width: 18rem;">
+            <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
+            <div class="card-body">
+            <p class="card-text">Nombre: ${nombre}</p>
+            <p>Apellido: ${apellido}
+            <p>Licencia Nº: ${licenciaN}  
+            <p>Vencimiento Psicofisico: Vigente                         
+            <p>Cantidad de saltos: ${cantidadSaltos}
+        </div>
+       `)
+
+        
+        }
+    }
+})
