@@ -174,7 +174,7 @@ $("#enviar1").click(function(e) {
             <p>Vencimiento Psicofisico: Vigente                         
             <p>Cantidad de saltos: ${cantidadSaltos}
         </div>
-       `)
+        `) 
         } else {
             $("#mostrar").append(`<div class="card" style="width: 18rem;">
             <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
@@ -190,4 +190,16 @@ $("#enviar1").click(function(e) {
         
         }
     }
-})
+});
+
+
+
+/*Desafio complementario animaciones concatenadas */
+$("#hideForm").click(function(){
+    $(".formulario1")
+        .css("background-color", "red")
+            .fadeOut(3000)
+                .fadeIn(3000);
+                    
+});
+

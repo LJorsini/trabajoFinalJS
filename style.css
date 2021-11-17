@@ -7,11 +7,11 @@
     display: flex;
 }
 
-.formulario1 {
+.formulario1, .formulario2 {
     background-color: aqua;
 }
 
-.formulario1, .tituloForm, .total {
+.formulario1, .formulario2, .tituloForm, .total {
     width: 600px;
     
 }
