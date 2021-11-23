@@ -19,3 +19,11 @@
 .tituloForm {
     text-align: center;
 }
+
+
+.divMeteo {
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    text-align: start;
+}

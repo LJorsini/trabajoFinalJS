@@ -195,11 +195,81 @@ $("#enviar1").click(function(e) {
 
 
 /*Desafio complementario animaciones concatenadas */
-$("#hideForm").click(function(){
+/* $("#hideForm").click(function(){
     $(".formulario1")
         .css("background-color", "red")
             .fadeOut(3000)
                 .fadeIn(3000);
                     
-});
+}); */
 
+
+/* let urlJSON = "http://hp-api.herokuapp.com/api/characters";
+
+$("#buttonJSON").click(function(){
+    $.get(urlJSON, function(datos){
+        for(let personajes of datos){
+            console.log(personajes.name);
+
+            $("body").prepend(`<div>
+                                    <p>${personajes.name}</p>
+                                    <img src="${personajes.image}"></img>
+                                    </div>`);
+                                    
+        }
+    });
+}) */
+
+/* let geoLoc = navigator.geolocation.getCurrentPosition(mostrarGeo);
+
+
+function mostrarGeo(position) {
+    let latitud = position.coords.latitude;
+    let longitud = position.coords.longitude;
+    console.log("latitud" + longitud);
+    console.log("latitud" + latitud);
+}
+
+let urlClima = "http://api.openweathermap.org/data/2.5/weather?lat=-31.428&lon=-62.0827&appid=5b1b42cb7e852dd9e2b729eafb1e6443";
+
+
+$("#clima").click(function(){
+    $.get(urlClima, function(datos){
+        console.log(datos);
+    })
+}) */
+
+$.ajax({
+    url: 'http://api.openweathermap.org/data/2.5/weather?id=3837675&appid=5b1b42cb7e852dd9e2b729eafb1e6443',
+    type: 'get',
+    data: {
+        id: '3837675',
+        appid: '5b1b42cb7e852dd9e2b729eafb1e6443',
+        dataType: 'jsonp',
+        units: 'metric',   
+    },
+
+
+    success:function(data) {
+        console.log(data);
+        console.log(data.name);
+        console.log(" La humedad es : " + data.main.humidity + " % " + " El viento es de: " + data.wind.speed);
+
+        let divClima = `<div class="meteo">
+                            <p>Aeroclub San Fancisco - ${data.name}, Cordoba</p>
+                            <p>Temperatura: ${data.main.temp} ºC<p/>
+                            <p>Sensacion termica: ${data.main.feels_like} ºC<p/>
+                            <p>Temperatura Minima: ${data.main.temp_max} ºC<p/>
+                            <p>Temperatura Maxima: ${data.main.temp_min} ºC<p/>
+                            <p>Presion atmosferica: ${data.main.pressure} hPa<p/>
+                            <p>Velocidad del viento: ${data.wind.speed} Km/h<p/>
+                            <p>Direccion del viento: ${data.wind.deg} º<p/>
+                            <p>Rafagas: ${data.wind.gust} Km/h<p/>
+                            <p>Nubosidad: ${data.weather[0].main}</p>
+                            <img src="http://openweathermap.org/img/wn/01d.png"
+                        </div>`
+
+        $("#infoMeteo").append(divClima);
+        
+    }
+})
