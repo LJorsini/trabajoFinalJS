@@ -1,111 +1,102 @@
-/*Clases y finciones--------------------------------------------------------------------------------------------------------------------------------------------- */
-class Paracaidista {
-    constructor (nombre, apellido, licenciaN, vencimientoPsicofisico, cantidadSaltos) {
+/*Clases y funciones--------------------------------------------------------------------------------------------------------------------------------------------- */
+class Staff {
+    constructor (nombre, apellido, licenciaN,  cantidadSaltos, puesto, imagen) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.licenciaN = licenciaN;
-        this.vencimientoPsicofisico = vencimientoPsicofisico;
         this.cantidadSaltos = parseInt(cantidadSaltos);
+        this.puesto = puesto;
+        this.imagen = imagen;
     }
 }
 
 /*Constructores---------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-let paracaidista1 = new Paracaidista ("Lucas", "Orsini", "AR12345", "2023-09-30", 202);
-let paracaidista2 = new Paracaidista ("Jose", "Perez", "AR78541", "2020-06-01T00:00:00", 50);
-let paracaidista3 = new Paracaidista ("Jose", "Rodriguez", "AR74589", "2025-10-01T00:00:00", 178);
-let paracaidista4 = new Paracaidista ("Juan", "Peres", "AR74521", "2020-05-05T00:00:00", 25); 
+let staff1 = new Staff ("Roberto", "Carlos", "AR12345", 2500,"Instructor", "Fotos/instructor.jpg");
+let staff2 = new Staff ("Jose", "Perez", "AR78541",3000, "Piloto Tandem", "Fotos/tandem.jpg");
+let staff3 = new Staff ("Jose", "Rodriguez", "AR74589",1500,"Camarografo", "Fotos/camara.jpg");
+let staff4 = new Staff ("Juan", "Peres", "AR74521",550, "Plegador", "Fotos/plegador.jpg"); 
+
 
 /*Arrays------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-let arrayParacaidistas = []; 
-arrayParacaidistas.push(paracaidista1);
-arrayParacaidistas.push(paracaidista2);
-arrayParacaidistas.push(paracaidista3);
-arrayParacaidistas.push(paracaidista4); 
- 
-/*Funcion que muestra la operacion de compra de tickets */
-function enviar(e) {
-    e.preventDefault();
-    let nombre = document.getElementById("name");
-    let apellido = document.getElementById("surname");
-    let telefono = document.getElementById("tel");
-    let email = document.getElementById("email");
-    let licencia = document.getElementById("licencia");
-    let cantidadSaltos = document.getElementById("tickets");
-    let cantidadCuotas = document.getElementById("cuotas");
+let arrayStaff = []; 
+arrayStaff.push(staff1);
+arrayStaff.push(staff2);
+arrayStaff.push(staff3);
+arrayStaff.push(staff4); 
 
-    let precio = 3000;
-    let total = parseFloat(cantidadSaltos.value * precio);
-    let financiado = parseFloat(total / cantidadCuotas.value);
-
-    let formulario = document.getElementById("confirmacionForm");
-    let confirmacion = document.createElement("div");
-
-    confirmacion.innerHTML = `<p>Nombre: ${nombre.value}</p>
-                               <p>Apellido: ${apellido.value}</p>
-                               <p>Telefono: ${telefono.value}</p>
-                               <p>Email: ${email.value}</p>
-                               <p>Licencia: ${licencia.value}</p>
-                               <p>Cantidad Tickets: ${cantidadSaltos.value}</p>
-                               <p>Cantidad de Cuotas: ${cantidadCuotas.value}</p>
-                               <p>Total a pagar: $ ${total}</p>
-                               <p>Financiacion ${cantidadCuotas.value} cuotas de $ ${financiado}</p>
-                                `;
-
-        formulario.appendChild(confirmacion);
-}
+/*Muestra el Staff con fotos */
+for (const staff of arrayStaff) {
+    let nombre = staff.nombre;
+    let apellido = staff.apellido;
+    let licenciaN = staff.licenciaN;
+    let cantidadSaltos = staff.cantidadSaltos;
+    let puesto = staff.puesto;
+    let img = staff.imagen;
 
 
-/*Funcion que muestra todos los paracaidistas que estan anotados y si tienen el psicofisico vencido */
-/* function mostrarParaca (e) {
-    e.preventDefault();
-    
-    for (const paracas of arrayParacaidistas) {
-        let nombre = paracas.nombre;
-        let apellido = paracas.apellido;
-        let licenciaN = paracas.licenciaN;
-        let vencimientoPsico = paracas.vencimientoPsicofisico;
-        let cantidadSaltos = paracas.cantidadSaltos;
-        
-        let fecha = new Date();
-        let objetoFecha = new Date(vencimientoPsico);
-        console.log(fecha);
-        console.log(objetoFecha);
-        
-        if (objetoFecha.getTime() > fecha.getTime()) { 
-            let mostrar = document.getElementById("mostrar");
-            let mostrarTodo = document.createElement("div");
+    let mostrar = document.getElementById("mostrarStaff");
+    let mostrarTodo = document.createElement("div");
 
-            mostrarTodo.innerHTML = `<div class="card" style="width: 18rem;">
-                                    <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
+    mostrarTodo.innerHTML = `<div class="card" style="width: 18rem;">
+                                    <img src="${img}" class="card-img-top imgCard" alt="paraca">
                                     <div class="card-body">
                                     <p class="card-text">Nombre: ${nombre}</p>
                                     <p>Apellido: ${apellido}
-                                    <p>Licencia Nº: ${licenciaN}  
-                                    <p>Vencimiento Psicofisico: Vigente                         
+                                    <p>Licencia Nº: ${licenciaN}                          
                                     <p>Cantidad de saltos: ${cantidadSaltos}
+                                    <p>Puesto : ${puesto}</p>
                                 </div>
                                `
 
             mostrar.appendChild(mostrarTodo);
-        } else {
-            let mostrar = document.getElementById("mostrar");
-        let mostrarTodo = document.createElement("div");
+}
 
-        mostrarTodo.innerHTML = `<div class="card" style="width: 18rem;">
-                                    <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
-                                    <div class="card-body">
-                                    <p class="card-text">Nombre: ${nombre}</p>
-                                    <p>Apellido: ${apellido}
-                                    <p>Licencia Nº: ${licenciaN}  
-                                    <p>Vencimiento Psicofisico: Vencido                         
-                                    <p>Cantidad de saltos: ${cantidadSaltos}
-                                </div>
-                               `
+/*Funcion que muestra la operacion de compra de tickets */
+function enviar(e) {
+    e.preventDefault();
+    
+    let nombre = document.getElementById("name");
+    let apellido = document.getElementById("surname");
+    let telefono = document.getElementById("tel");
+    let email = document.getElementById("email");
+    /* let licencia = document.getElementById("licencia"); */
+    let cantidadSaltos = document.getElementById("tickets");
+    let cantidadCuotas = document.getElementById("cuotas");
+    
 
-        mostrar.appendChild(mostrarTodo);
-        }
-    }
-} */
+    
+    let precio = 3000;
+    let total = parseFloat(cantidadSaltos.value * precio);
+    let financiado = parseFloat(total / cantidadCuotas.value);
+
+    if (cantidadCuotas.value > 1) {
+        total = total + (total * 0.2);
+        financiado = financiado + (financiado * 0.2);
+    } 
+
+    let formulario = document.getElementById("confirmacionForm");
+    let confirmacion = document.createElement("div");
+
+    confirmacion.innerHTML = `<p>
+                                <button class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Mostrar Compra
+                                </button>
+                              </p>
+                                    <div class="collapse" id="collapseExample">
+                                        <div class="card card-body">
+                                            <p>Nombre: ${nombre.value}</p>
+                                            <p>Apellido: ${apellido.value}</p>
+                                            <p>Telefono: ${telefono.value}</p>
+                                            <p>Email: ${email.value}</p>
+                                            <p>Cantidad Tickets: ${cantidadSaltos.value}</p>
+                                            <p>Cantidad de Cuotas: ${cantidadCuotas.value}</p>
+                                            <p>Total a pagar: $ ${total}</p>
+                                            <p>Financiacion ${cantidadCuotas.value} cuotas de $ ${financiado}</p>
+                                        </div>
+                                    </div>`;
+
+        formulario.appendChild(confirmacion);
+}
 
 /*Funcion para poner Paracaidista en local storage */
 function nuevoParaca (e) {
@@ -129,116 +120,56 @@ function nuevoParaca (e) {
     
     localStorage.setItem("Cantidad de saltos", totalSaltos.value);
 
-    
+    let fecha = new Date();
+    let objetoFecha = new Date(psicofisico.value);
+    console.log(fecha);
+    console.log(objetoFecha);
 
-    document.getElementById("formulario1").reset();
+    if (objetoFecha.getTime() > fecha.getTime()) { 
+        let mostrar = document.getElementById("mostrar");
+        let mostrarTodo = document.createElement("div");
+
+        mostrarTodo.innerHTML = `<div class="card" style="width: 18rem;">
+                                <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
+                                <div class="card-body">
+                                <p class="card-text">Nombre: ${nombreNuevo.value}</p>
+                                <p>Apellido: ${apellidoNuevo.value}
+                                <p>Licencia Nº: ${licenciaNueva.value}  
+                                <p>Vencimiento Psicofisico: Vigente                         
+                                <p>Cantidad de saltos: ${totalSaltos.value}
+                            </div>
+                           `
+
+        mostrar.appendChild(mostrarTodo);
+    } else {
+        let mostrar = document.getElementById("mostrar");
+        let mostrarTodo = document.createElement("div");
+
+        mostrarTodo.innerHTML = `<div class="card" style="width: 18rem;">
+                                 <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
+                                <div class="card-body">
+                                <p class="card-text">Nombre: ${nombreNuevo.value}</p>
+                                <p>Apellido: ${apellidoNuevo.value}
+                                <p>Licencia Nº: ${licenciaNueva.value}  
+                                <p>Vencimiento Psicofisico: Vencido                         
+                                <p>Cantidad de saltos: ${totalSaltos.value}
+                                </div>`
+
+        mostrar.appendChild(mostrarTodo);
+    }
+
+        document.getElementById("formulario1").reset();
 }
 
 /*Manejadores de eventos */
 let confirFormulario = document.getElementById("enviar");
 confirFormulario.addEventListener("click", enviar);
 
-/* let confirmarMostrar = document.getElementById("enviar1");
-confirmarMostrar.addEventListener("click", mostrarParaca); */
-
 let confirmarNuevo = document.getElementById("botonNew");
 confirmarNuevo.addEventListener("click", nuevoParaca);
 
 
-
-
-/*Desafio Entregable JQuery */
-$("#enviar1").click(function(e) {
-    e.preventDefault();
-    
-    for (const paracas of arrayParacaidistas) {
-        let nombre = paracas.nombre;
-        let apellido = paracas.apellido;
-        let licenciaN = paracas.licenciaN;
-        let vencimientoPsico = paracas.vencimientoPsicofisico;
-        let cantidadSaltos = paracas.cantidadSaltos;
-        
-        let fecha = new Date();
-        let objetoFecha = new Date(vencimientoPsico);
-        console.log(fecha);
-        console.log(objetoFecha);
-        
-        if (objetoFecha.getTime() > fecha.getTime()) { 
-            
-            $("#mostrar").append(`<div class="card" style="width: 18rem;">
-            <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
-            <div class="card-body">
-            <p class="card-text">Nombre: ${nombre}</p>
-            <p>Apellido: ${apellido}
-            <p>Licencia Nº: ${licenciaN}  
-            <p>Vencimiento Psicofisico: Vigente                         
-            <p>Cantidad de saltos: ${cantidadSaltos}
-        </div>
-        `) 
-        } else {
-            $("#mostrar").append(`<div class="card" style="width: 18rem;">
-            <img src="Fotos/foto.jpg" class="card-img-top" alt="paraca">
-            <div class="card-body">
-            <p class="card-text">Nombre: ${nombre}</p>
-            <p>Apellido: ${apellido}
-            <p>Licencia Nº: ${licenciaN}  
-            <p>Vencimiento Psicofisico: Vigente                         
-            <p>Cantidad de saltos: ${cantidadSaltos}
-        </div>
-       `)
-
-        
-        }
-    }
-});
-
-
-
-/*Desafio complementario animaciones concatenadas */
-/* $("#hideForm").click(function(){
-    $(".formulario1")
-        .css("background-color", "red")
-            .fadeOut(3000)
-                .fadeIn(3000);
-                    
-}); */
-
-
-/* let urlJSON = "http://hp-api.herokuapp.com/api/characters";
-
-$("#buttonJSON").click(function(){
-    $.get(urlJSON, function(datos){
-        for(let personajes of datos){
-            console.log(personajes.name);
-
-            $("body").prepend(`<div>
-                                    <p>${personajes.name}</p>
-                                    <img src="${personajes.image}"></img>
-                                    </div>`);
-                                    
-        }
-    });
-}) */
-
-/* let geoLoc = navigator.geolocation.getCurrentPosition(mostrarGeo);
-
-
-function mostrarGeo(position) {
-    let latitud = position.coords.latitude;
-    let longitud = position.coords.longitude;
-    console.log("latitud" + longitud);
-    console.log("latitud" + latitud);
-}
-
-let urlClima = "http://api.openweathermap.org/data/2.5/weather?lat=-31.428&lon=-62.0827&appid=5b1b42cb7e852dd9e2b729eafb1e6443";
-
-
-$("#clima").click(function(){
-    $.get(urlClima, function(datos){
-        console.log(datos);
-    })
-}) */
-
+/*AJAX Api para tomas datos del clima */
 $.ajax({
     url: 'http://api.openweathermap.org/data/2.5/weather?id=3837675&appid=5b1b42cb7e852dd9e2b729eafb1e6443',
     type: 'get',
@@ -246,19 +177,21 @@ $.ajax({
         id: '3837675',
         appid: '5b1b42cb7e852dd9e2b729eafb1e6443',
         dataType: 'jsonp',
-        units: 'metric',   
+        units: 'metric',  
+        cnt: `7`, 
+    
     },
-
-
     success:function(data) {
         console.log(data);
         console.log(data.name);
         console.log(" La humedad es : " + data.main.humidity + " % " + " El viento es de: " + data.wind.speed);
 
-        let divClima = `<div class="meteo">
-                            <p>Aeroclub San Fancisco - ${data.name}, Cordoba</p>
-                            <p>Temperatura: ${data.main.temp} ºC<p/>
-                            <p>Sensacion termica: ${data.main.feels_like} ºC<p/>
+        let divClima = `
+                        <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">Aeroclub San Francisco - ${data.name}</h5>
+                        <h4 class="card-subtitle mb-2 text-muted">Cordoba</h4>
+                        <p>Sensacion termica: ${data.main.feels_like} ºC<p/>
                             <p>Temperatura Minima: ${data.main.temp_max} ºC<p/>
                             <p>Temperatura Maxima: ${data.main.temp_min} ºC<p/>
                             <p>Presion atmosferica: ${data.main.pressure} hPa<p/>
@@ -266,10 +199,13 @@ $.ajax({
                             <p>Direccion del viento: ${data.wind.deg} º<p/>
                             <p>Rafagas: ${data.wind.gust} Km/h<p/>
                             <p>Nubosidad: ${data.weather[0].main}</p>
-                            <img src="http://openweathermap.org/img/wn/01d.png"
+                        
+                        </div>
                         </div>`
-
+                        
         $("#infoMeteo").append(divClima);
         
     }
 })
+
+
